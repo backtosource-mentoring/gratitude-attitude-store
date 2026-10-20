@@ -1,7 +1,7 @@
 import json, os, html, datetime
 from data import *
 
-OUT = __import__("os").path.join(__import__("os").path.dirname(__file__), "..", "site")
+OUT = __import__("os").path.join(__import__("os").path.dirname(__file__), "..", "docs")
 TODAY = datetime.date.today().isoformat()
 PAGES = []  # (path, priority)
 E = html.escape
@@ -50,7 +50,7 @@ def page(path, title, desc, body, jsonld=(), og_img="/img/gratitude-attitude-800
 <link rel="canonical" href="{url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="{AUTHOR}">
-<meta name="theme-color" content="#0b0a09">
+<meta name="theme-color" content="#0e2a20">
 <meta property="og:type" content="{og_type}">
 <meta property="og:site_name" content="{BRAND}">
 <meta property="og:title" content="{E(title)}">
@@ -74,7 +74,7 @@ def page(path, title, desc, body, jsonld=(), og_img="/img/gratitude-attitude-800
  <div class="wrap">
   <a class="brand" href="/" aria-label="{BRAND} home"><img src="/img/logo.webp" alt="" width="42" height="42"><span>{BRAND}</span></a>
   <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
-  <nav class="nav" id="nav" aria-label="Main">{nav}<a class="btn btn-gold" href="/gratitude-workbook/">Choose your cover</a></nav>
+  <nav class="nav" id="nav" aria-label="Main">{nav}<a class="btn btn-gold" href="/gratitude-workbook/">Choose your vibe</a></nav>
  </div>
 </header>
 <main id="main">
@@ -159,7 +159,7 @@ def build_home():
     ]
     cards = ""
     for img, tag, name, txt, url, asin in trio:
-        b = buy(asin, "Amazon", item=name) if asin else f'<a class="btn btn-gold" href="/gratitude-workbook/">Choose a cover {ARROW}</a>'
+        b = buy(asin, "Amazon", item=name) if asin else f'<a class="btn btn-gold" href="/gratitude-workbook/">Choose your vibe {ARROW}</a>'
         cards += (f'<article class="card reveal"><a href="{url}">{pic(img, name + " book cover", cls="cover")}</a>'
                   f'<div class="tag">{tag}</div><h3><a href="{url}" style="text-decoration:none">{E(name)}</a></h3><p>{E(txt)}</p>'
                   f'<div class="btn-row">{b}<a class="btn btn-ghost on-light" href="{url}">Details</a></div></article>')
@@ -174,7 +174,7 @@ def build_home():
    <p class="lead">Not a mood to wait for. A short daily practice that moves you from survival mode into intention, with a book to understand it, a workbook to train it, and a journal to prove it.</p>
    <div class="btn-row">
     <a class="btn btn-gold" href="#collection">Start here {ARROW}</a>
-    <a class="btn btn-ghost" href="/gratitude-workbook/">See all 11 covers</a>
+    <a class="btn btn-ghost" href="/gratitude-workbook/">See all 11 vibes</a>
    </div>
    <p class="hero-note">Premium hardcovers &middot; Shipped by Amazon worldwide</p>
   </div>
@@ -215,10 +215,10 @@ def build_home():
    <div class="fan reveal" aria-hidden="false">{fan}</div>
    <div>
     <p class="eyebrow">The workbook</p>
-    <h2>One workbook. <em class="gold">Eleven covers.</em></h2>
-    <p class="lead">The same {WORKBOOK_PAGES}-page interior in eleven hardcover editions, from night-sky cosmic to soft florals to library green. Choose the one that feels like you. Or like the person you are giving it to.</p>
+    <h2>One workbook. <em class="gold">Eleven vibes.</em></h2>
+    <p class="lead">The same {WORKBOOK_PAGES}-page interior in eleven hardcover editions, from night-sky cosmic to soft florals to library green. Choose your vibe. Or your best friend's vibe, for the perfect gift.</p>
     <ul class="ticks"><li>Practical exercises and creative prompts</li><li>Daily reflection frameworks</li><li>Consciousness anchors for stressful days</li><li>Premium hardcover, made to sit on a desk</li></ul>
-    <a class="btn btn-gold" href="#covers">Find your cover {ARROW}</a>
+    <a class="btn btn-gold" href="#covers">Find your vibe {ARROW}</a>
    </div>
   </div>
  </div>
@@ -226,8 +226,8 @@ def build_home():
 
 <section id="covers">
  <div class="wrap center">
-  <p class="eyebrow">Choose by mood</p>
-  <h2>Which one is yours?</h2>
+  <p class="eyebrow">Choose your vibe</p>
+  <h2>Yours, or a friend's?</h2>
   {gallery()}
  </div>
 </section>
@@ -323,7 +323,7 @@ def build_book():
     <p class="fine">Sold and shipped by Amazon. Price and delivery shown at checkout.</p>
     <h2 style="margin-top:60px;font-size:36px">Inside the book</h2>
     <ul class="ticks"><li>Why the mind defaults to survival mode, and how to step out of it</li><li>The story of Lily, told chapter by chapter alongside the method</li><li>Gratitude as a daily practice, not a passing feeling</li><li>Ideas drawn from Abraham Hicks, Bruce Lipton and Viktor Frankl, made practical</li><li>A closing space to write your own quotes</li></ul>
-    <div class="inline-cta"><a href="/gratitude-workbook/">{pic("thrive", "Gratitude Attitude Workbook", sizes="130px")}</a><div><h3>Practice what you read</h3><p>The workbook turns each idea into exercises you can do in minutes.</p><a class="btn btn-ghost on-light" href="/gratitude-workbook/">Choose a workbook cover {ARROW}</a></div></div>
+    <div class="inline-cta"><a href="/gratitude-workbook/">{pic("thrive", "Gratitude Attitude Workbook", sizes="130px")}</a><div><h3>Practice what you read</h3><p>The workbook turns each idea into exercises you can do in minutes.</p><a class="btn btn-ghost on-light" href="/gratitude-workbook/">Choose your vibe {ARROW}</a></div></div>
     {faq_html(qa)}
    </div>
   </div>
@@ -349,7 +349,7 @@ def build_workbook_hub():
   {crumbs_html([("Home", "/"), ("The Workbook", p)])}
   <p class="eyebrow">Gratitude Attitude Workbook</p>
   <h1>The gratitude workbook, <em class="gold">in your vibe.</em></h1>
-  <p class="lead narrow">A hands-on, {WORKBOOK_PAGES}-page hardcover that takes you from automatic, limiting habits of mind into a steady daily practice. One interior. Eleven covers. Pick the one that feels like you.</p>
+  <p class="lead narrow">A hands-on, {WORKBOOK_PAGES}-page hardcover that takes you from automatic, limiting habits of mind into a steady daily practice. One interior. Eleven vibes. Choose yours, or your friend's for the perfect gift.</p>
  </div>
 </section>
 <section style="padding-top:0">
@@ -392,7 +392,7 @@ def build_cover(c, i):
     <p class="lead">{E(c["line"])} For {E(c["for"])}.</p>
     <p>{E(c["body"])}</p>
     <div class="facts"><div><b>Format</b><span>Hardcover</span></div><div><b>Interior</b><span>{WORKBOOK_PAGES} pages</span></div><div><b>Author</b><span>E. M. Kazir</span></div></div>
-    <div class="btn-row">{buy(c["asin"], item=c["name"])}<a class="btn btn-ghost on-light" href="/gratitude-workbook/">Compare covers</a></div>
+    <div class="btn-row">{buy(c["asin"], item=c["name"])}<a class="btn btn-ghost on-light" href="/gratitude-workbook/">See all vibes</a></div>
     <p class="fine">Same interior in all 11 editions. Sold and shipped by Amazon.</p>
     <h2 style="margin-top:60px;font-size:36px">Inside every edition</h2>
     {WB_INSIDE}
@@ -400,7 +400,7 @@ def build_cover(c, i):
    </div>
   </div>
   <div class="more">
-   <h2>Other covers you might love</h2>
+   <h2>Other vibes you might love</h2>
    <div class="grid" style="margin-top:30px">{"".join(tile(x) for x in others)}</div>
   </div>
  </div>

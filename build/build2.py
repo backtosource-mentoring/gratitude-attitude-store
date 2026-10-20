@@ -107,13 +107,13 @@ def build_gifts():
   {crumbs_html([("Home", "/"), ("Gratitude Gifts", p)])}
   <p class="eyebrow">Gift guide</p>
   <h1>A gift that says <em class="gold">I see you.</em></h1>
-  <p class="lead narrow">Flowers fade. A hardcover gratitude workbook sits on a desk for months and gets opened every day. Choose the cover that matches the person, and the gift becomes personal before they open it.</p>
+  <p class="lead narrow">Flowers fade. A hardcover gratitude workbook sits on a desk for months and gets opened every day. Choose their vibe, and the gift becomes personal before they open it.</p>
  </div>
 </section>
 <section style="padding-top:30px">
  <div class="wrap center">
   <div class="trio">{cards}</div>
-  <p style="margin-top:50px"><a class="btn btn-gold" href="/gratitude-workbook/">See all 11 covers {ARROW}</a></p>
+  <p style="margin-top:50px"><a class="btn btn-gold" href="/gratitude-workbook/">See all 11 vibes {ARROW}</a></p>
  </div>
 </section>
 <section class="dark stars">
@@ -151,7 +151,7 @@ def build_misc():
     open(OUT + "/sitemap.xml", "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     open(OUT + "/robots.txt", "w").write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     open(OUT + "/site.webmanifest", "w").write(json.dumps({"name": BRAND, "short_name": BRAND, "start_url": "/", "display": "browser",
-        "background_color": "#0b0a09", "theme_color": "#0b0a09", "icons": [{"src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}))
+        "background_color": "#0e2a20", "theme_color": "#0e2a20", "icons": [{"src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}))
     # Netlify: caching, security headers, and 301s from the old Shopify URLs so existing links keep their value
     open(OUT + "/netlify.toml", "w").write('''[build]
   publish = "."
