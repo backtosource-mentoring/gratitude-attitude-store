@@ -1,0 +1,11 @@
+/products/*  /gratitude-workbook/  301
+/collections/*  /gratitude-workbook/  301
+/collections  /gratitude-workbook/  301
+/pages/about*  /about/  301
+/pages/*  /  301
+/blogs/*  /gratitude-practice/  301
+/cart  /gratitude-workbook/  301
+/search  /gratitude-workbook/  301
+/index.html  /  301
+http://backtosource.vip/*  https://backtosource.vip/:splat  301!
+https://www.backtosource.vip/*  https://backtosource.vip/:splat  301!

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://backtosource.vip/sitemap.xml
