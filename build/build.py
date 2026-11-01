@@ -29,9 +29,23 @@ def crumbs_ld(items):
     return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + u} for i, (n, u) in enumerate(items)]}
 
+BACK_SVG = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg>'
+
 def crumbs_html(items):
     parts = [f'<a href="{u}">{E(n)}</a>' for n, u in items[:-1]] + [E(items[-1][0])]
-    return '<nav class="crumbs" aria-label="Breadcrumb">' + "<span>/</span>".join(parts) + "</nav>"
+    parent = items[-2][1] if len(items) > 1 else "/"
+    back = f'<a class="back-btn" href="{parent}" data-back>{BACK_SVG} Back</a>'
+    return '<div class="crumb-row">' + back + '<nav class="crumbs" aria-label="Breadcrumb">' + "<span>/</span>".join(parts) + "</nav></div>"
+
+def vibe_nav(i, where="top"):
+    n = len(COVERS); prv = COVERS[(i - 1) % n]; nxt = COVERS[(i + 1) % n]
+    thumb = lambda c: f'<img src="/img/{c["slug"]}-400.webp" alt="" width="44" height="59" loading="lazy">'
+    return (f'<nav class="vibe-nav vibe-nav-{where}" aria-label="Browse vibes">'
+            f'<a class="vn-prev" href="/gratitude-workbook/{prv["slug"]}/" rel="prev" data-key="prev">'
+            f'<span class="vn-arrow">{BACK_SVG}</span>{thumb(prv)}<span class="vn-txt"><small>Previous vibe</small>{E(prv["name"])}</span></a>'
+            f'<a class="vn-all" href="/gratitude-workbook/">{i + 1} / {n}<small>All vibes</small></a>'
+            f'<a class="vn-next" href="/gratitude-workbook/{nxt["slug"]}/" rel="next" data-key="next">'
+            f'<span class="vn-txt"><small>Next vibe</small>{E(nxt["name"])}</span>{thumb(nxt)}<span class="vn-arrow">{ARROW}</span></a></nav>')
 
 NAV = [("The Book", "/gratitude-attitude-book/"), ("The Workbook", "/gratitude-workbook/"),
        ("The Journal", "/agreement-journal/"), ("Gratitude Practice", "/gratitude-practice/"), ("About", "/about/")]
@@ -384,6 +398,7 @@ def build_cover(c, i):
 <section class="product">
  <div class="wrap">
   {crumbs_html([("Home", "/"), ("The Workbook", "/gratitude-workbook/"), (c["name"], p)])}
+  {vibe_nav(i)}
   <div class="split">
    <div class="cover-wrap">{pic(c["slug"], f"{c['name']} cover, Gratitude Attitude Workbook hardcover by {AUTHOR}", eager=True, sizes="(max-width:900px) 80vw, 460px")}</div>
    <div>
@@ -399,6 +414,7 @@ def build_cover(c, i):
     <div class="callout"><p><em class="gold">Giving it as a gift?</em> Order on Amazon and enter the recipient's address at checkout. Amazon lets you add a gift message.</p></div>
    </div>
   </div>
+  {vibe_nav(i, "bottom")}
   <div class="more">
    <h2>Other vibes you might love</h2>
    <div class="grid" style="margin-top:30px">{"".join(tile(x) for x in others)}</div>
